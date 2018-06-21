@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-public class Arrow {
+public class AlienGUI {
 	private static JFrame frame;
 	Movement m = new Movement();
 	public static JLabel scoreL;
@@ -18,7 +18,7 @@ public class Arrow {
 	}
 
 	public static void main(String[] args) {
-		frame = new JFrame("Arrows!");
+		frame = new JFrame("Alien Killer!");
 		scoreL = new JLabel("Score " + Movement.score);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000, 800);
@@ -123,11 +123,7 @@ class Movement extends JComponent {
 			dropped = false;
 			bulletY = rectY;
 			bulletX = rectX;
-			double luck = Math.random();
-			if(luck>0.3) {
-				luck -= 0.5;
-			}
-			health -= luck * getWidth();
+			health -= 0.05 * getWidth();
 		}
 	}
 
@@ -150,7 +146,7 @@ class Movement extends JComponent {
 				}
 				rectMove += 1;
 				score += 1;
-				Arrow.scoreL.setText("Score: " + score);
+				AlienGUI.scoreL.setText("Score: " + score);
 				progress += .05 * getWidth();
 				aLives = 1;
 				changed = false;
@@ -165,7 +161,6 @@ class Movement extends JComponent {
 	public void isDead() {
 		if (progress >= getWidth() || health <= 0 || rectY > 600) {
 			System.exit(0);
-			JOptionPane.showMessageDialog(null,"Commander, how could you have failed? We have been destroyed");
 		}
 	}
 	
